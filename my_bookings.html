@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<h1 class="fw-bold mb-5">
+My Bookings
+</h1>
+
+{% for b in bookings %}
+
+<div class="card shadow border-0 p-4 mb-4">
+
+<h3>
+{{ b.service.name }}
+</h3>
+
+<p>
+Category:
+{{ b.service.category }}
+</p>
+
+<p>
+📍 {{ b.service.city }}
+</p>
+
+<p>
+📅 Booking Date:
+{{ b.booking_date }}
+</p>
+
+<p>
+⏰ Booking Time:
+{{ b.booking_time }}
+</p>
+
+<p>
+📞 Provider Contact:
+{{ b.service.phone }}
+</p>
+
+<a href="https://wa.me/91{{ b.service.whatsapp }}"
+class="btn btn-success">
+
+Chat on WhatsApp
+
+</a>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-warning">
+
+No bookings yet.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

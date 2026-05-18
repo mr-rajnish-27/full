@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<div class="d-flex justify-content-between align-items-center mb-5">
+
+<h1 class="fw-bold">
+Provider Dashboard
+</h1>
+
+<a href="/add-service/"
+class="btn btn-success">
+
++ Add New Service
+
+</a>
+
+</div>
+
+<!-- Services -->
+
+<h3 class="mb-4">
+Your Services
+</h3>
+
+<div class="row">
+
+{% for s in services %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow border-0 rounded-4 p-3 h-100">
+
+{% if s.image %}
+
+<img src="{{ s.image.url }}"
+class="card-img-top rounded-3 mb-3"
+style="height:200px;object-fit:cover;">
+
+{% endif %}
+
+<h4 class="fw-bold">
+{{ s.name }}
+</h4>
+
+<p>
+{{ s.category }}
+</p>
+
+<p class="text-primary fw-bold">
+₹{{ s.price }}
+</p>
+
+<p>
+📍 {{ s.city }}
+</p>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- Bookings -->
+
+<h3 class="mt-5 mb-4">
+Customer Bookings
+</h3>
+
+{% for b in bookings %}
+
+<div class="card shadow border-0 rounded-4 p-4 mb-4">
+
+<h4 class="fw-bold">
+{{ b.customer.username }}
+</h4>
+
+<p>
+Service:
+<b>{{ b.service.name }}</b>
+</p>
+
+<p>
+📅 {{ b.booking_date }}
+</p>
+
+<p>
+⏰ {{ b.booking_time }}
+</p>
+
+<p>
+📞 {{ b.customer.phone }}
+</p>
+
+<p>
+🏠 {{ b.customer.address }}
+</p>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-warning">
+
+No bookings yet.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

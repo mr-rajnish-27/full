@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<!-- Hero Section -->
+
+<div class="hero text-center text-white py-5">
+
+<div class="container">
+
+<h1 class="display-2 fw-bold">
+Home Services
+</h1>
+
+<p class="lead mb-4">
+Book Trusted Services at Your Doorstep
+</p>
+
+<a href="#services"
+class="btn btn-light btn-lg px-5">
+
+Available Services
+
+</a>
+
+</div>
+
+</div>
+
+<!-- Services -->
+
+<div class="container py-5" id="services">
+
+<h2 class="text-center fw-bold mb-5">
+Available Services
+</h2>
+<form method="get"
+class="row justify-content-center mb-5">
+
+<div class="col-md-4">
+
+<input type="text"
+name="city"
+placeholder="Enter Your City"
+class="form-control">
+
+</div>
+
+<div class="col-md-2">
+
+<button class="btn btn-primary w-100">
+
+Search
+
+</button>
+
+</div>
+
+</form>
+
+<div class="row">
+
+{% for s in services %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow-lg border-0 rounded-4 h-100 overflow-hidden">
+
+{% if s.image %}
+
+<img src="{{ s.image.url }}"
+class="card-img-top"
+style="height:220px;object-fit:cover;">
+
+{% else %}
+
+<img src="https://via.placeholder.com/400x220"
+class="card-img-top">
+
+{% endif %}
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+{{ s.name }}
+</h3>
+
+<p class="text-muted">
+{{ s.description }}
+</p>
+
+<h4 class="text-primary fw-bold">
+₹{{ s.price }}
+</h4>
+
+<p>
+📍 {{ s.city }}
+</p>
+
+<p>
+📞 {{ s.phone }}
+</p>
+
+<p>
+✉ {{ s.email }}
+</p>
+
+<a href="https://wa.me/91{{ s.whatsapp }}"
+class="btn btn-success w-100 mb-2">
+
+WhatsApp
+
+</a>
+
+<a href="tel:{{ s.phone }}"
+class="btn btn-dark w-100 mb-2">
+
+Call Now
+
+</a>
+
+<a href="/book/{{ s.id }}/"
+class="btn btn-primary w-100">
+
+Book Service
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<h3 class="text-center">
+No Services Available
+</h3>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+<style>
+
+body{
+background:#f5f7fb;
+}
+
+.hero{
+background:linear-gradient(to right,#001eff,#002ea6);
+padding:100px 0;
+}
+
+.card{
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+</style>
+
+{% endblock %}

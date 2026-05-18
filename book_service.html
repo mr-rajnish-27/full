@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<div class="row justify-content-center">
+
+<div class="col-md-5">
+
+<div class="card shadow p-4">
+
+<h2 class="mb-4">
+Book Service
+</h2>
+
+<form method="post">
+
+{% csrf_token %}
+
+<input type="date"
+name="date"
+class="form-control mb-3">
+
+<input type="time"
+name="time"
+class="form-control mb-3">
+
+<button class="btn btn-primary w-100">
+
+Confirm Booking
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
